@@ -1,4 +1,4 @@
-package com.example.edufygenre.entities;
+package com.example.edufygenre.models.entities;
 
 
 import jakarta.persistence.*;
@@ -31,6 +31,11 @@ public class Genre {
         this.id = id;
         this.name = name;
         this.active = active;
+    }
+
+    public Genre(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Genre(Genre genre){
