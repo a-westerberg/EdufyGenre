@@ -1,4 +1,4 @@
-package com.example.edufygenre.dto;
+package com.example.edufygenre.models.dto;
 
 
 // ED-132-AWS

@@ -1,17 +1,15 @@
-package com.example.edufygenre.dto;
+package com.example.edufygenre.models.dto;
 
-
-// ED-136-AWS
-public class PodcastSeasonDTO {
+// ED-135-AWS
+public class AlbumDTO {
 
     private Long id;
     private String title;
 
-
-    public PodcastSeasonDTO() {
+    public AlbumDTO() {
     }
 
-    public PodcastSeasonDTO(Long id, String title) {
+    public AlbumDTO(Long id, String title) {
         this.id = id;
         this.title = title;
     }
@@ -31,7 +29,7 @@ public class PodcastSeasonDTO {
 
     @Override
     public String toString() {
-        return "PodcastSeasonDTO{" +
+        return "AlbumDTO{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 '}';
