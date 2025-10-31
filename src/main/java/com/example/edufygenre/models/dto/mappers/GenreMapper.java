@@ -9,7 +9,7 @@ public class GenreMapper {
     public GenreMapper() {
     }
 
-    public static GenreDTO toDto(Genre genre) {
+    public static GenreDTO toDTO(Genre genre) {
         if(genre == null)
             return null;
         return new GenreDTO(genre.getId(), genre.getName());

@@ -8,4 +8,7 @@ import java.util.List;
 public interface GenreService {
 
     List<GenreDTO> getAllGenres();
+
+// ED-73-AWS
+    GenreDTO getGenreById(Long id);
 }
