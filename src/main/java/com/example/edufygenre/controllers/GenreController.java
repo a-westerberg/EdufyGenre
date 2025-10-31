@@ -5,10 +5,7 @@ import com.example.edufygenre.models.dto.GenreDTO;
 import com.example.edufygenre.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +32,12 @@ public class GenreController {
     public ResponseEntity<GenreDTO> getGenreById(@PathVariable Long id) {
         GenreDTO genre = genreService.getGenreById(id);
         return ResponseEntity.ok(genre);
+    }
+
+//ED-72-AWS
+    @GetMapping("/name/{name}")
+    public ResponseEntity<GenreDTO> getGenreByName(@PathVariable String name) {
+        return ResponseEntity.ok(genreService.getGenreByName(name));
     }
 
 

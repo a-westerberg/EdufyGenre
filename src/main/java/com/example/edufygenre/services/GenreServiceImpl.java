@@ -37,4 +37,12 @@ public class GenreServiceImpl implements GenreService {
                 .orElseThrow(() -> new ResourceNotFound("Genre", "id", id));
         return GenreMapper.toDTO(genre);
     }
+
+//ED-72-AWS
+    @Override
+    public GenreDTO getGenreByName(String name) {
+        Genre genre = genreRepository.findByNameIgnoreCase(name)
+                .orElseThrow(() -> new ResourceNotFound("Genre", "name", name));
+        return GenreMapper.toDTO(genre);
+    }
 }
