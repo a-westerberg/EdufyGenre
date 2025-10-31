@@ -11,4 +11,7 @@ public interface GenreService {
 
 // ED-73-AWS
     GenreDTO getGenreById(Long id);
+
+//ED-72-AWS
+    GenreDTO getGenreByName(String name);
 }
