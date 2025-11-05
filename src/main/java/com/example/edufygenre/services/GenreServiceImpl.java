@@ -5,6 +5,8 @@ import com.example.edufygenre.exceptions.ResourceNotFound;
 import com.example.edufygenre.models.dto.GenreDTO;
 import com.example.edufygenre.models.dto.mappers.GenreMapper;
 import com.example.edufygenre.models.entities.Genre;
+import com.example.edufygenre.models.enums.MediaType;
+import com.example.edufygenre.repositories.GenreMappingRepository;
 import com.example.edufygenre.repositories.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,12 @@ import java.util.List;
 public class GenreServiceImpl implements GenreService {
 
     private final GenreRepository genreRepository;
+    private final GenreMappingRepository genreMappingRepository;
 
     @Autowired
-    public GenreServiceImpl(GenreRepository genreRepository) {
+    public GenreServiceImpl(GenreRepository genreRepository, GenreMappingRepository genreMappingRepository) {
         this.genreRepository = genreRepository;
+        this.genreMappingRepository = genreMappingRepository;
     }
 
     @Override
@@ -44,5 +48,14 @@ public class GenreServiceImpl implements GenreService {
         Genre genre = genreRepository.findByNameIgnoreCase(name)
                 .orElseThrow(() -> new ResourceNotFound("Genre", "name", name));
         return GenreMapper.toDTO(genre);
+    }
+
+//ED-216-AWS
+    @Override
+    public List<GenreDTO> getGenresByMedia(MediaType mediaType, Long mediaId) {
+        return genreMappingRepository.findByMediaTypeAndMediaId(mediaType, mediaId)
+                .stream()
+                .map(m -> GenreMapper.toDTO(m.getGenre()))
+                .toList();
     }
 }

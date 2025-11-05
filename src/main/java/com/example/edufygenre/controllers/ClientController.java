@@ -2,9 +2,11 @@ package com.example.edufygenre.controllers;
 
 import com.example.edufygenre.models.dto.GenreDTO;
 
+import com.example.edufygenre.models.enums.MediaType;
 import com.example.edufygenre.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,12 +14,13 @@ import java.util.List;
 //ED-69-AWS
 @RestController
 @RequestMapping("/api/v1/genre")
-public class GenreController {
+@Validated
+public class ClientController {
 
     private final GenreService genreService;
 
     @Autowired
-    public GenreController(GenreService genreService) {
+    public ClientController(GenreService genreService) {
         this.genreService = genreService;
     }
 
@@ -38,6 +41,14 @@ public class GenreController {
     @GetMapping("/name/{name}")
     public ResponseEntity<GenreDTO> getGenreByName(@PathVariable String name) {
         return ResponseEntity.ok(genreService.getGenreByName(name));
+    }
+
+//ED-216-AWS
+    @GetMapping("/by/media/{mediaType}/{mediaId}")
+    public ResponseEntity<List<GenreDTO>> getGenresByMedia(
+            @PathVariable MediaType mediaType,
+            @PathVariable  Long mediaId) {
+        return ResponseEntity.ok(genreService.getGenresByMedia(mediaType, mediaId));
     }
 
 
