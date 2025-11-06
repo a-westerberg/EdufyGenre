@@ -58,4 +58,12 @@ public class GenreServiceImpl implements GenreService {
                 .map(m -> GenreMapper.toDTO(m.getGenre()))
                 .toList();
     }
+
+    @Override
+    public List<GenreDTO> getAllGenresByMediaType(MediaType mediaType) {
+        return genreRepository.findAllByMediaType(mediaType)
+                .stream()
+                .map(GenreMapper::toDTO)
+                .toList();
+    }
 }

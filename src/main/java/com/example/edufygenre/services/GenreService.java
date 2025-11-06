@@ -18,4 +18,8 @@ public interface GenreService {
 
 // ED-216-AWS
     List<GenreDTO> getGenresByMedia(MediaType mediaType, Long mediaId);
+
+//ED-218-AWS
+    List<GenreDTO> getAllGenresByMediaType(MediaType mediaType);
+
 }
