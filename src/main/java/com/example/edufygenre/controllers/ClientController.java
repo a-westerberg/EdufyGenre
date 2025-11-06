@@ -44,12 +44,17 @@ public class ClientController {
     }
 
 //ED-216-AWS
-    @GetMapping("/by/media/{mediaType}/{mediaId}")
+    @GetMapping("/by/media-id/{mediaType}/{mediaId}")
     public ResponseEntity<List<GenreDTO>> getGenresByMedia(
             @PathVariable MediaType mediaType,
             @PathVariable  Long mediaId) {
         return ResponseEntity.ok(genreService.getGenresByMedia(mediaType, mediaId));
     }
 
+//ED-218-AWS
+    @GetMapping("/by/media-type/{mediaType}")
+    public ResponseEntity<List<GenreDTO>> getAllGenresByMediaType(@PathVariable MediaType mediaType) {
+        return ResponseEntity.ok(genreService.getAllGenresByMediaType(mediaType));
+    }
 
 }
