@@ -1,11 +1,16 @@
 package com.example.edufygenre.controllers;
 
+import com.example.edufygenre.models.dto.CreateMediaRecordRequest;
+import com.example.edufygenre.models.dto.CreateMediaRecordResponse;
 import com.example.edufygenre.models.dto.GenreDTO;
 
 import com.example.edufygenre.models.dto.MediaByGenreDTO;
 import com.example.edufygenre.models.enums.MediaType;
 import com.example.edufygenre.services.GenreService;
+import com.example.edufygenre.services.MediaRecordService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +24,12 @@ import java.util.List;
 public class ClientController {
 
     private final GenreService genreService;
+    private final MediaRecordService mediaRecordService;
 
     @Autowired
-    public ClientController(GenreService genreService) {
+    public ClientController(GenreService genreService, MediaRecordService mediaRecordService) {
         this.genreService = genreService;
+        this.mediaRecordService = mediaRecordService;
     }
 
     @GetMapping("/all")
@@ -63,6 +70,13 @@ public class ClientController {
     public ResponseEntity<MediaByGenreDTO> getMediaByGenre(@PathVariable Long genreId, @PathVariable MediaType mediaType) {
         MediaByGenreDTO mediaByGenreDTO = genreService.getMediaByGenre(genreId, mediaType);
         return ResponseEntity.ok(mediaByGenreDTO);
+    }
+
+//ED-296-AWS
+    @PostMapping("/media/record")
+    public ResponseEntity<CreateMediaRecordResponse> createMediaRecord(@RequestBody @Valid CreateMediaRecordRequest request){
+        CreateMediaRecordResponse response = mediaRecordService.createRecordOfMedia(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
 }

@@ -22,4 +22,7 @@ public interface GenreMappingRepository extends JpaRepository<GenreMapping, Long
                     order by gm.mediaId
     """)
     List<Long> findMediaIdsByGenreAndType(@Param("genreId") Long genreId, @Param("mediaType") MediaType mediaType);
+
+//ED-296-AWS
+    boolean existsByMediaTypeAndMediaIdAndGenre_Id(MediaType mediaType, Long mediaId, Long genreId);
 }
