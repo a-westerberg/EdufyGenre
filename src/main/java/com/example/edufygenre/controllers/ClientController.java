@@ -2,6 +2,7 @@ package com.example.edufygenre.controllers;
 
 import com.example.edufygenre.models.dto.GenreDTO;
 
+import com.example.edufygenre.models.dto.MediaByGenreDTO;
 import com.example.edufygenre.models.enums.MediaType;
 import com.example.edufygenre.services.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,13 @@ public class ClientController {
     @GetMapping("/by/media-type/{mediaType}")
     public ResponseEntity<List<GenreDTO>> getAllGenresByMediaType(@PathVariable MediaType mediaType) {
         return ResponseEntity.ok(genreService.getAllGenresByMediaType(mediaType));
+    }
+
+//ED-52-AWS
+    @GetMapping("/{genreId}/media/by-type/{mediaType}")
+    public ResponseEntity<MediaByGenreDTO> getMediaByGenre(@PathVariable Long genreId, @PathVariable MediaType mediaType) {
+        MediaByGenreDTO mediaByGenreDTO = genreService.getMediaByGenre(genreId, mediaType);
+        return ResponseEntity.ok(mediaByGenreDTO);
     }
 
 }
