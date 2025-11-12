@@ -38,6 +38,12 @@ public class Genre {
         this.name = name;
     }
 
+//ED-240-AWS
+    public Genre(String name, boolean active) {
+        this.name = name;
+        this.active = active;
+    }
+
     public Genre(Genre genre){
         this.id = genre.id;
         this.name = genre.name;
