@@ -19,4 +19,8 @@ public interface GenreRepository extends JpaRepository<Genre, Long> {
     //ED-218-AWS
     @Query("select distinct g from GenreMapping m join m.genre g where m.mediaType =:type")
     List<Genre> findAllByMediaType(@Param("type") MediaType mediaType);
+
+//ED-240-AWS
+    boolean existsByNameIgnoreCase(String name);
+
 }
