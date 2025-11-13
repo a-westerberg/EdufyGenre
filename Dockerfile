@@ -1,11 +1,15 @@
 # ED-159-AWS
-
-FROM openjdk:21-jdk-slim
+#ED-164-SA
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY target/*.jar app.jar
+COPY . .
+RUN mvn -B -DskipTests clean package
 
-# TODO change to prod later
-ENV SPRING_PROFILES_ACTIVE=dev
+FROM eclipse-temurin:21-jre-jammy
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+
+ENV SPRING_PROFILES_ACTIVE=prod
 
 EXPOSE 8585
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
