@@ -1,6 +1,7 @@
 package com.example.edufygenre.services;
 
 import com.example.edufygenre.models.dto.GenreDTO;
+import com.example.edufygenre.models.dto.MediaByGenreDTO;
 import com.example.edufygenre.models.enums.MediaType;
 
 import java.util.List;
@@ -21,5 +22,8 @@ public interface GenreService {
 
 //ED-218-AWS
     List<GenreDTO> getAllGenresByMediaType(MediaType mediaType);
+
+//ED-52-AWS
+    MediaByGenreDTO getMediaByGenre(Long genreId, MediaType mediaType);
 
 }

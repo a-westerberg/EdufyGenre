@@ -3,6 +3,7 @@ package com.example.edufygenre.services;
 
 import com.example.edufygenre.exceptions.ResourceNotFound;
 import com.example.edufygenre.models.dto.GenreDTO;
+import com.example.edufygenre.models.dto.MediaByGenreDTO;
 import com.example.edufygenre.models.dto.mappers.GenreMapper;
 import com.example.edufygenre.models.entities.Genre;
 import com.example.edufygenre.models.enums.MediaType;
@@ -65,5 +66,14 @@ public class GenreServiceImpl implements GenreService {
                 .stream()
                 .map(GenreMapper::toDTO)
                 .toList();
+    }
+
+//ED-52-AWS
+    @Override
+    public MediaByGenreDTO getMediaByGenre(Long genreId, MediaType mediaType) {
+        Genre genre = genreRepository.findById(genreId)
+                .orElseThrow(() -> new ResourceNotFound("Genre", "id", genreId));
+        List<Long> mediaIds = genreMappingRepository.findMediaIdsByGenreAndType(genreId, mediaType);
+        return GenreMapper.toMediaByGenreDTO(genre, mediaIds);
     }
 }
