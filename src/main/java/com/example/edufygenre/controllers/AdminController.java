@@ -6,6 +6,7 @@ import com.example.edufygenre.services.AdminGenreService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +19,9 @@ import java.net.URI;
 
 //ED-240-AWS
 @RestController
-@RequestMapping("/api/v1/genre/admin")
+@RequestMapping("/genre/admin")     //ED-349-AWS removed /api/v1
 @Validated
+@PreAuthorize("hasRole('genre_admin')")  //ED-349-AWS
 public class AdminController {
 
     private final AdminGenreService adminGenreService;
