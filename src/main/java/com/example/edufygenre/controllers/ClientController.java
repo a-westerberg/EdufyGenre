@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/genre")       //ED-349-AWS removed /api/v1
 @Validated
-@PreAuthorize("hasRole('genre_user')")   //ED-349-AWS
+@PreAuthorize("hasRole('microservice_access')")   //ED-349-AWS  -- ED-353-AWS changed from user
 public class ClientController {
 
     private final GenreService genreService;
