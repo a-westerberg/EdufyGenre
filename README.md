@@ -28,6 +28,7 @@ Docker Compose. Other related projects will be linked below.
 ### Media services
 - [EdufyMusic](https://github.com/Jamtgard/EdufyMusic) - Service for songs and albums
 - [EdufyVideo](https://github.com/Sommar-skog/EdufyVideo) - Service for video clips and video playlists
+- [EdufyPod](https://github.com/SaraSnail/EdufyPod) - Service for podcast episodes and seasons
 
 ---
 
